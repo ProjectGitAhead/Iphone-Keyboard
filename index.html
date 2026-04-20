@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>iPhone Keyboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <h1>iPhone Keyboard</h1>
+      </div>
+      <p class="tagline">
+        A highly customizable, pixel-faithful iPhone keyboard — right in your
+        browser.
+      </p>
+    </header>
+
+    <main class="stage">
+      <section class="phone" aria-label="iPhone preview">
+        <div class="phone-notch" aria-hidden="true">
+          <div class="notch-camera"></div>
+          <div class="notch-speaker"></div>
+        </div>
+
+        <div class="phone-screen">
+          <div class="status-bar" aria-hidden="true">
+            <span class="time" id="status-time">9:41</span>
+            <span class="status-right">
+              <svg viewBox="0 0 18 12" width="18" height="12" aria-hidden="true">
+                <circle cx="2" cy="10" r="1.5" />
+                <circle cx="6" cy="10" r="1.5" />
+                <circle cx="10" cy="10" r="1.5" />
+                <circle cx="14" cy="10" r="1.5" />
+              </svg>
+              <svg viewBox="0 0 16 12" width="16" height="12" aria-hidden="true">
+                <path
+                  d="M8 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm4.2-2.8a6 6 0 0 0-8.4 0l-1-1a7.5 7.5 0 0 1 10.4 0l-1 1Zm2.8-2.8a10 10 0 0 0-14 0l-1-1a11.5 11.5 0 0 1 16 0l-1 1Z"
+                />
+              </svg>
+              <span class="battery" aria-label="Battery 86%">
+                <span class="battery-body"><span class="battery-fill"></span></span>
+                <span class="battery-cap"></span>
+              </span>
+            </span>
+          </div>
+
+          <div class="note-app">
+            <div class="note-toolbar">
+              <button class="note-btn" aria-label="Back">&lsaquo;</button>
+              <div class="note-title">Notes</div>
+              <button class="note-btn" aria-label="Done" id="done-btn">Done</button>
+            </div>
+
+            <div class="note-body">
+              <div
+                class="editor"
+                id="editor"
+                contenteditable="true"
+                spellcheck="false"
+                data-placeholder="Tap a key to start typing…"
+              ></div>
+              <div class="caret-spacer" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="suggestion-bar" id="suggestion-bar" aria-label="Suggestions">
+            <button class="suggestion" data-slot="0">&ldquo;&rdquo;</button>
+            <button class="suggestion" data-slot="1"></button>
+            <button class="suggestion" data-slot="2"></button>
+          </div>
+
+          <div class="keyboard" id="keyboard" aria-label="Keyboard">
+            <!-- keys are rendered by app.js -->
+          </div>
+
+          <div class="home-indicator" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <aside class="settings" aria-label="Keyboard settings">
+        <h2>Customize</h2>
+        <p class="settings-intro">
+          Tweak the keyboard to your liking. Changes apply instantly and are
+          saved on this device.
+        </p>
+
+        <div class="setting">
+          <label for="theme">Theme</label>
+          <select id="theme">
+            <option value="light">Light</option>
+            <option value="dark" selected>Dark</option>
+            <option value="midnight">Midnight Blue</option>
+            <option value="sunset">Sunset</option>
+            <option value="forest">Forest</option>
+            <option value="candy">Candy</option>
+          </select>
+        </div>
+
+        <div class="setting">
+          <label for="layout">Layout</label>
+          <select id="layout">
+            <option value="qwerty">QWERTY</option>
+            <option value="azerty">AZERTY</option>
+            <option value="dvorak">Dvorak</option>
+          </select>
+        </div>
+
+        <div class="setting">
+          <label for="key-shape">Key shape</label>
+          <select id="key-shape">
+            <option value="rounded" selected>Rounded (default)</option>
+            <option value="pill">Pill</option>
+            <option value="square">Square</option>
+          </select>
+        </div>
+
+        <div class="setting">
+          <label for="font-size">Key font size</label>
+          <input
+            id="font-size"
+            type="range"
+            min="14"
+            max="28"
+            step="1"
+            value="20"
+          />
+          <span class="setting-value" id="font-size-value">20px</span>
+        </div>
+
+        <div class="setting row">
+          <label for="sound">Key click sound</label>
+          <input id="sound" type="checkbox" checked />
+        </div>
+
+        <div class="setting row">
+          <label for="haptics">Haptic feedback</label>
+          <input id="haptics" type="checkbox" checked />
+        </div>
+
+        <div class="setting row">
+          <label for="autocap">Auto-capitalize</label>
+          <input id="autocap" type="checkbox" checked />
+        </div>
+
+        <div class="setting row">
+          <label for="suggestions">Predictive suggestions</label>
+          <input id="suggestions" type="checkbox" checked />
+        </div>
+
+        <div class="setting row">
+          <label for="autospace">Auto-space after punctuation</label>
+          <input id="autospace" type="checkbox" checked />
+        </div>
+
+        <div class="setting row">
+          <label for="double-period">&ldquo;. &rdquo; on double-space</label>
+          <input id="double-period" type="checkbox" checked />
+        </div>
+
+        <div class="actions">
+          <button id="reset-settings" class="ghost">Reset to defaults</button>
+          <button id="clear-text" class="ghost">Clear text</button>
+        </div>
+
+        <footer class="tips">
+          <strong>Tips</strong>
+          <ul>
+            <li>Hold a letter to reveal accented variants.</li>
+            <li>Hold <kbd>123</kbd> or <kbd>shift</kbd> to lock it.</li>
+            <li>Double-tap <kbd>shift</kbd> for caps lock.</li>
+            <li>Hold the space bar, then drag to move the cursor.</li>
+            <li>Tap the globe to cycle themes.</li>
+          </ul>
+        </footer>
+      </aside>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
