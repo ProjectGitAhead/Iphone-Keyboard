@@ -805,10 +805,11 @@ suggestionBar.addEventListener("click", (ev) => {
   applySuggestion(word);
 });
 
-/* ---------- Keep editor focused & caret valid ---------- */
-editor.addEventListener("blur", () => {
-  setTimeout(() => editor.focus(), 0);
-});
+/* ---------- Editor behavior ----------
+ * The on-screen keys call placeCaret() which focuses the editor, so the
+ * caret reappears as soon as the user starts typing. We intentionally do
+ * not auto-refocus on blur so clicks on settings/toggles/dropdowns work.
+ */
 editor.addEventListener("keydown", (e) => {
   // Allow native arrow / selection navigation; block typing (use on-screen kb)
   if (e.key.length === 1) e.preventDefault();
