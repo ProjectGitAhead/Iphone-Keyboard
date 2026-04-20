@@ -17,6 +17,12 @@ test('getSuggestions tolerates common typo patterns', () => {
   assert.equal(suggestions.length, 3);
 });
 
+test('getSuggestions ranks hello first for helo typo', () => {
+  const suggestions = getSuggestions('helo');
+
+  assert.equal(suggestions[0], 'hello');
+});
+
 test('chooseAutoCorrect aggressively corrects common typo "teh"', () => {
   assert.equal(chooseAutoCorrect('teh'), 'the');
 });

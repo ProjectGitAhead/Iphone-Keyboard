@@ -23,6 +23,9 @@ const AGGRESSIVE_AUTO_CORRECT = {
   teh: 'the',
 };
 const MIN_AUTOCORRECT_TOKEN_LENGTH = 3;
+const PREFIX_WEIGHT = 2;
+const TYPO_WEIGHT = 0.7;
+const PRIORITY_WEIGHT = 0.2;
 
 function levenshteinDistance(a, b) {
   const rows = a.length + 1;
@@ -115,7 +118,7 @@ function combinedScore(input, candidate) {
   const typoTolerance = typoSimilarityScore(normalizedInput, normalizedCandidate);
   const priority = priorityScore(normalizedCandidate);
 
-  return (prefix * 2) + (typoTolerance * 0.7) + (priority * 0.4);
+  return (prefix * PREFIX_WEIGHT) + (typoTolerance * TYPO_WEIGHT) + (priority * PRIORITY_WEIGHT);
 }
 
 function isUppercaseLetter(char) {
