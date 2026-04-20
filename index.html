@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iPhone Keyboard Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="phone" aria-label="iPhone keyboard demo">
+        <header class="phone__status" aria-hidden="true">
+          <span class="phone__camera"></span>
+        </header>
+
+        <section class="display-panel">
+          <label class="display-panel__label" for="display-text">Typed text</label>
+          <pre id="display-text" class="display-panel__text" aria-live="polite"></pre>
+        </section>
+
+        <section
+          id="suggestions-rail"
+          class="suggestions-rail"
+          aria-label="Word suggestions"
+        ></section>
+
+        <section class="keyboard-panel">
+          <div id="keyboard-root" aria-label="Keyboard"></div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
