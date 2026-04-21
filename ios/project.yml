@@ -1,0 +1,63 @@
+name: IphoneKeyboard
+options:
+  bundleIdPrefix: com.projectgitahead
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: ""
+targets:
+  IphoneKeyboardApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: IphoneKeyboardApp
+      - path: SharedKeyboardCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.projectgitahead.iphonekeyboard
+        INFOPLIST_FILE: IphoneKeyboardApp/Info.plist
+    info:
+      path: IphoneKeyboardApp/Info.plist
+      properties:
+        CFBundleDisplayName: iPhone Keyboard
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+  IphoneKeyboardExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: IphoneKeyboardExtension
+      - path: SharedKeyboardCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.projectgitahead.iphonekeyboard.extension
+        INFOPLIST_FILE: IphoneKeyboardExtension/Info.plist
+        APPLICATION_EXTENSION_API_ONLY: true
+    info:
+      path: IphoneKeyboardExtension/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.keyboard-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
+        PrimaryLanguage: en
+        RequestsOpenAccess: true
+  SharedKeyboardCoreTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SharedKeyboardCoreTests
+      - path: SharedKeyboardCore
+    dependencies:
+      - target: IphoneKeyboardApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.projectgitahead.iphonekeyboard.tests
+        INFOPLIST_FILE: SharedKeyboardCoreTests/Info.plist
+    info:
+      path: SharedKeyboardCoreTests/Info.plist
+      properties:
+        CFBundleDisplayName: Shared Keyboard Core Tests
